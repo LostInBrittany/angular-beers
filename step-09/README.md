@@ -34,3 +34,57 @@ var angularBeer = angular.module('AngularBeer', [
   'BeerFilters'
 ]);
 ```
+
+## Template ##
+
+Since the filter code lives in the app/js/filters.js file, we need to include this file in our layout template.
+
+`app/index.html`:
+
+```html
+...
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/filters.js"></script>
+...
+```
+
+As we have already seen, the syntax for using filters in Angular templates is as follows:
+
+```html
+{{ expression | filter }}
+```
+
+Let's employ the filter in the beer details template:
+
+`app/partials/beer-detail.html`:
+
+```html
+<li>
+  <dl>
+    <dt>Alcohol content</dt>
+    <dd>{{beer.alcohol | strongAlcohol }}</dd>
+  </dl>
+</li>
+```
+
+## Experiments ##
+
+Let's experiment with some of the [built-in Angular filters](https://docs.angularjs.org/api/ng/filter) and add the following bindings to `index.html`:
+
+```html
+{{ "lower cap string" | uppercase }}
+{{ {foo: "bar", baz: 23} | json }}
+{{ 1304375948024 | date }}
+{{ 1304375948024 | date:"MM/dd/yyyy @ h:mma" }}
+```
+
+We can also create a model with an input element, and combine it with a filtered binding. Add the following to `index.html`:
+
+```html
+<input ng-model="userInput"> Uppercased: {{ userInput | uppercase }}
+```
+
+## Summary ##
+
+Now that you have learned how to write and test a custom filter, go to [step 10](../step-10) to learn how we can use Angular to enhance the beer details page further.
