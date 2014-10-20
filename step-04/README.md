@@ -92,7 +92,6 @@ This is a good time to talk about two-way data-binding. Notice that when the app
 
 ## Experiments ##
 
-Experiments
 
 In the `BeerListCtrl` controller, remove the statement that sets the `orderProp` value and you'll see that Angular will temporarily add a new "unknown" option to the drop-down list and the ordering will default to unordered/natural order.
 
