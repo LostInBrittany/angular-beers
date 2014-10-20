@@ -25,7 +25,8 @@ controller('BeerDetailCtrl', ['$scope', '$routeParams', '$http', function($scope
 }])
 ```
 
-## Template ## 
+
+## Template ##
 
 We bound the `ngSrc` directive of the large image to the `mainImg` property.
 
