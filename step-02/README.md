@@ -138,6 +138,7 @@ Now, make the list 1-based by incrementing i by one in the binding:
   <tr><th>row number</th></tr>
   <tr ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7]"><td>{{i+1}}</td></tr>
 </table>
+```
 
 Extra points: try and make an 8x8 table using an additional `ng-repeat`.
 to instead use toBe(4).
