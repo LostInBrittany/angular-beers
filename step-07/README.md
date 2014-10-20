@@ -43,3 +43,37 @@ Note: Providers can only be injected into `config` functions. Thus you could not
 Angular modules solve the problem of removing global state from the application and provide a way of configuring the injector. As opposed to AMD or require.js modules, Angular modules don't try to solve the problem of script load ordering or lazy script fetching. These goals are totally independent and both module systems can live side by side and fulfill their goals.
 
 To deepen your understanding of DI on Angular, see [Understanding Dependency Injection](https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection).
+
+## Template ##
+
+The `$route` service is usually used in conjunction with the [ngView](https://docs.angularjs.org/api/ngRoute/directive/ngView) directive. 
+The role of the `ngView` directive is to include the view template for the current route into the layout template. 
+This makes it a perfect fit for our `index.html` template.
+
+We must two new `<script>` tags in our index file to load up extra JavaScript files into our application:
+
+* `angular-route.js`: defines the Angular `ngRoute` module, which provides us with routing.
+* `app.js`: this file now holds the root module of our application.
+
+`app/index.html`:
+
+```html
+<!doctype html>
+<html lang="en" ng-app="AngularBeer">
+<head>
+  <meta charset="utf-8">
+  <title>Angular Beer Gallery</title>
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="lib/angular.js"></script>
+  <script src="lib/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="BeerListCtrl">
+  <div ng-view></div>
+</body>
+</html>
+```
+
+Note that we removed most of the code in the `index.html` template and replaced it with a single line containing a `div` with the `ng-view` attribute. The code that we removed was placed into the `app/partials/beer-list.html` template:
