@@ -57,9 +57,44 @@ Note that the names of arguments are significant, because the injector uses thes
 
 You can create your own services, and in fact we will do exactly that in [step 11](../step-11). As a naming convention, Angular's built-in services, `Scope` methods and a few other Angular APIs have a `$` prefix in front of the name.
 
-The `$̀ prefix is there to namespace Angular-provided services. To prevent collisions it's best to avoid naming your services and models anything that begins with a `$̀.
+The `$` prefix is there to namespace Angular-provided services. To prevent collisions it's best to avoid naming your services and models anything that begins with a `$`.
 
 If you inspect a Scope, you may also notice some properties that begin with `$$`. These properties are considered private, and should not be accessed or modified.
+
+
+## A Note on Minification ##
+
+Since Angular infers the controller's dependencies from the names of arguments to the controller's constructor function, if you were to minify the JavaScript code for `BeerListCtrl` controller, all of its function arguments would be minified as well, and the dependency injector would not be able to identify services correctly.
+
+We can overcome this problem by annotating the function with the names of the dependencies, provided as strings, which will not get minified. There are two ways to provide these injection annotations:
+
+* Create a `$inject` property on the controller function which holds an array of strings. Each string in the array is the name of the service to 
+  inject for the corresponding parameter. In our example we would write:
+
+  ```javascript
+  function BeerListCtrl($scope, $http) {...}
+  BeerListCtrl.$inject = ['$scope', '$http'];
+  angularBeer.controller('BeerListCtrl', BeerListCtrl);
+  ```
+
+* Use an inline annotation where, instead of just providing the function, you provide an array. This array contains a list of the service names, 
+  followed by the function itself.
+
+  ```javascript
+  function BeerListCtrl($scope, $http) {...}
+  angularBeer.controller('BeerListCtrl', ['$scope', '$http', BeerListCtrl]);
+  ```
+
+Both of these methods work with any function that can be injected by Angular, so it's up to your project's style guide to decide which one you use.
+
+When using the second method, it is common to provide the constructor function inline as an anonymous function when registering the controller:
+
+  ```javascript
+  angularBeer.controller('BeerListCtrl', ['$scope', '$http', function($scope, $http) {...}]);
+  ```
+
+This is the method we have choses for this tutorial.
+
 
 
 ## Template ##
