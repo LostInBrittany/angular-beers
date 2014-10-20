@@ -97,18 +97,17 @@ This is the method we have choses for this tutorial.
 
 
 
-## Template ##
+## Experiments ##
 
-`app/index.html`:
+At the bottom of `index.html`, add a `<pre>{{beers | json}}</pre>` binding to see the list of beers displayed in json format.
 
-```html
-  
+In the PhoneListCtrl controller, pre-process the http response by limiting the number of beers to the first 5 in the list. 
+Use the following code in the `$http` callback:
+
+```javascript
+$scope.beers = data.splice(0, 5);
 ```
 
-
-
-
-## Experiments ##
-
-
 ## Summary ##
+
+Now that you have learned how easy it is to use Angular services (thanks to Angular's dependency injection), go to [step 6](../step-06), where you will add some thumbnail images of beers and some links.
