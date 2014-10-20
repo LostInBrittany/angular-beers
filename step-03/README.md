@@ -66,7 +66,7 @@ Let's see how we can get the current value of the `query` model to appear in the
 You might think you could just add the `{{query}}` to the title tag element as follows:
 
 ```html
-<title>Google Phone Gallery: {{query}}</title>
+<title>Angular Beer Gallery: {{query}}</title>
 ```
 
 However, when you reload the page, you won't see the expected result. This is because the "query" model lives in the scope, defined by the `ng-controller="BeerListCtrl"` directive, on the body element:
