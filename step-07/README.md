@@ -115,3 +115,93 @@ TBD: detail view for <span>{{beerId}}</span>
 ```
 
 Note how we are using the beerId expression which will be defined in the BeerDetailCtrl controller.
+
+
+## The App Module ##
+
+To improve the organization of the app, we are making use of Angular's `ngRoute` module and we've moved the controllers into their own module 
+`BeerControllers` (as shown below).
+
+We added `angular-route.js` to `index.html` and created a new `BeerControllers` module in controllers.js. That's not all we need to do to be able to use their code, however. We also have to add the modules as dependencies of our app. By listing these two modules as dependencies of `angularBeer`, we can use the directives and services they provide.
+
+`app/js/app.js`:
+
+```javascript
+var angularBeer = angular.module('AngularBeer', [
+  'ngRoute',
+  'BeerControllers'
+]);
+...
+```
+Notice the second argument passed to `angular.module`, `['ngRoute', 'BeerControllers']`. This array lists the modules that `angularBeer̀ depends on.
+
+```javascript
+...
+angularBeer.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/beers', {
+        templateUrl: 'partials/beer-list.html',
+        controller: 'BeerListCtrl'
+      }).
+      when('/beers/:beerId', {
+        templateUrl: 'partials/beer-detail.html',
+        controller: 'BeerDetailCtrl'
+      }).
+      otherwise({
+        redirectTo: '/beers'
+      });
+  }]);
+```
+
+Using the `angularBeer.config()` method, we request the `$routeProvider` to be injected into our config function and use the `$routeProvider.when()` method to define our routes.
+
+Our application routes are defined as follows:
+
+* `when('/beers')̀: The beer list view will be shown when the URL hash fragment is `/beers`. To construct this view, 
+  Angular will use the `beer-list.html` template and the BeerListCtrl controller.
+
+* `when('/beers/:beerId')`: The beer details view will be shown when the URL hash fragment matches `'/beers/:beerId'`, where `:beerId` is 
+  a variable part of the URL. To construct the beer details view, Angular will use the `beer-detail.html` template and the `BeerDetailCtrl` controller.
+
+* `otherwise({redirectTo: '/beers'})`: triggers a redirection to `/beers` when the browser address doesn't match either of our routes.
+
+We reused the `BeerListCtrl` controller that we constructed in previous steps and we added a new, empty `BeerDetailCtrl` controller to the 
+`app/js/controllers.js` file for the beer details view.
+
+Note the use of the `:beerId` parameter in the second route declaration. The `$route` service uses the route declaration — `'/beers/:beerId'` — as a template that is matched against the current URL. All variables defined with the `:` notation are extracted into the `$routeParams` object.
+
+
+## Controllers ##
+
+`app/js/controllers.js`:
+
+```javascript
+angular
+  .module('BeerControllers', [])
+  .controller('BeerListCtrl', ['$scope', '$http', function($scope, $http) {
+
+    $http.get('beers/beers.json').success(function(data) {
+      $scope.beers = data;
+    });
+
+    $scope.orderProp = 'alcohol';
+  }])
+  .controller('BeerDetailCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+    $scope.beerId = $routeParams.beerId;
+  }]);
+```
+
+Again, note that we created a new module called `BeerControllers`. For small AngularJS applications, it's common to create just one module for all of your controllers if there are just a few. As your application grows it is quite common to refactor your code into additional modules. For larger apps, you will probably want to create separate modules for each major feature of your app.
+
+Because our example app is relatively small, we'll just add all of our controllers to the `BeerControllers` module.
+
+## Experiments ##
+
+Try to add an `{{orderProp}}` binding to `index.html`, and you'll see that nothing happens even when you are in the beer list view. 
+This is because the `orderProp` model is visible only in the scope managed by `BeerListCtrl`, which is associated with the `<div ng-view>` element. 
+If you add the same binding into the `beer-list.html` template, the binding will work as expected.
+
+## Summary ##
+
+With the routing set up and the beer list view implemented, we're ready to go to [step 8](../step-08/) to implement the beer details view.
