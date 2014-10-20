@@ -35,11 +35,11 @@ If you have [NodeJS](http://nodejs.org) in your system, we have put a minimalist
 
 As the computer used for the course haven't Git, we have structurated the project to allow a Git-less use. The `app` directory is the main directory of the project, the working version of the code. The tutorial is divided in steps, each one in its own directory:
 
-1 [Static Template](./step-01/)
-1 [Angular Templates](./step-02/)
-1 [Filtering Repeaters](./step-03/)
-1 [Two-way Data Binding](./step-04/)
-1 [XHRs & Dependency Injection](./step-05/)
-1 [Templating Links & Images](./step-06/)
-1 [Routing & Multiple Views](./step-07/)
-1 [More Templating](./step-08/)
+1. [Static Template](./step-01/)
+1. [Angular Templates](./step-02/)
+1. [Filtering Repeaters](./step-03/)
+1. [Two-way Data Binding](./step-04/)
+1. [XHRs & Dependency Injection](./step-05/)
+1. [Templating Links & Images](./step-06/)
+1. [Routing & Multiple Views](./step-07/)
+1. [More Templating](./step-08/)
