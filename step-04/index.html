@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="AngularBeer">
+<head>
+  <meta charset="utf-8">
+  <title>Angular Beer Gallery</title>
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="lib/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="BeerListCtrl">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query">
+
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="alcohol">Alcohol content</option>
+        </select>
+
+      </div>
+      <div class="col-md-10">
+        <!--Body content-->
+        <ul class="beers">
+          <li ng-repeat="beer in beers | filter:query | orderBy:orderProp">
+            <span>{{beer.name}}</span>
+            <p>{{beer.description}}</p>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
