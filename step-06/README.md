@@ -27,6 +27,13 @@ Note that the `beers.json` file contains unique ids and image urls for each of t
 
 ## Template ##
 
+To dynamically generate links that will in the future lead to beer detail pages, we used the now-familiar double-curly brace binding in the href attribute values. In step 2, we added the `{{beer.name}}` binding as the element content. In this step the `{{beer.id}}` binding is used in the element attribute.
+
+We also added beer images next to each record using an `img` tag with the [ngSrc](https://docs.angularjs.org/api/ng/directive/ngSrc) directive. 
+That directive prevents the browser from treating the Angular `{{ expression }}` markup literally, and initiating a request to invalid url 
+http://localhost:8000/app/{{beer.imageUrl}}, 
+which it would have done if we had only specified an attribute binding in a regular `src` attribute (`<img src="{{beer.imageUrl}}">`). 
+Using the `ngSrc` directive prevents the browser from making an http request to an invalid location.
 
 `app/index.html`:
 
