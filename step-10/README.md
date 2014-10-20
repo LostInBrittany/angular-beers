@@ -50,3 +50,25 @@ We also registered an [ngClick](https://docs.angularjs.org/api/ng/directive/ngCl
   </li>
 </ul>
 ```
+
+## Experiments ##
+
+Let's add a new controller method to BeerDetailCtrl:
+
+```javascript
+$scope.hello = function(name) {
+    alert('Hello ' + (name || 'world') + '!');
+}
+```
+
+and add:
+
+```html
+<button ng-click="hello('Elmo')">Hello</button>
+```
+
+to the `beer-detail.html` template.
+
+## Summary ##
+
+With the beer image swapper in place, we're ready for [step 11](../step-11) to learn an even better way to fetch data.
