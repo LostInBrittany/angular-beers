@@ -1,4 +1,4 @@
-# AngularBeer - AngularJS tutorial - Step 09 #
+# AngularBeer - AngularJS tutorial - Step 10 #
 
 In this step, you will add a clickable beer image swapper to the beer details page.
 
