@@ -158,7 +158,7 @@ Using the `angularBeer.config()` method, we request the `$routeProvider` to be i
 
 Our application routes are defined as follows:
 
-* `when('/beers')̀: The beer list view will be shown when the URL hash fragment is `/beers`. To construct this view, 
+* `when('/beers')`: The beer list view will be shown when the URL hash fragment is `/beers`. To construct this view, 
   Angular will use the `beer-list.html` template and the BeerListCtrl controller.
 
 * `when('/beers/:beerId')`: The beer details view will be shown when the URL hash fragment matches `'/beers/:beerId'`, where `:beerId` is 
