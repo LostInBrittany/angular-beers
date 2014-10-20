@@ -31,8 +31,8 @@ To dynamically generate links that will in the future lead to beer detail pages,
 
 We also added beer images next to each record using an `img` tag with the [ngSrc](https://docs.angularjs.org/api/ng/directive/ngSrc) directive. 
 That directive prevents the browser from treating the Angular `{{ expression }}` markup literally, and initiating a request to invalid url 
-http://localhost:8000/app/{{beer.imageUrl}}, 
-which it would have done if we had only specified an attribute binding in a regular `src` attribute (`<img src="{{beer.imageUrl}}">`). 
+http://localhost:8000/app/{{beer.img}}, 
+which it would have done if we had only specified an attribute binding in a regular `src` attribute (`<img src="{{beer.img}}">`). 
 Using the `ngSrc` directive prevents the browser from making an http request to an invalid location.
 
 `app/index.html`:
@@ -47,60 +47,12 @@ Using the `ngSrc` directive prevents the browser from making an http request to 
     </ul>
 ```
 
-
-## Controller ##
-
-We modify the `beers` model - the array of beers - and added an `alcohol` property to each beer record. This property is used to order beers by their alcohol content.
-
-Then we add a line to the controller that sets the default value of `orderProp` to `alcohol`. If we had not set a default value here, the `orderBy` filter would remain uninitialized until our user picked an option from the drop down menu.
-
-```javascript
-$scope.beers = [
-  {
-    "alcohol": 6.8,
-    "name": "Affligem Blond",
-    "description": "Affligem Blonde, the classic clear blonde abbey ale, with a gentle roundness and 6.8% alcohol. Low on bitterness, it is eminently drinkable."
-  },
-  {
-    "alcohol": 8.5,
-    "name": "Affligem Tripel",
-    "description": "The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma, delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle."
-  },
-  {
-    "alcohol": 9.2,
-    "name": "Rochefort 8",
-    "description": "A dry but rich flavoured beer with complex fruity and spicy flavours."
-  },
-  {
-    "alcohol": 11.3,
-    "name": "Rochefort 10",
-    "description": "The top product from the Rochefort Trappist brewery. Dark colour, full and very impressive taste. Strong plum, raisin, and black currant palate, with ascending notes of vinousness and other complexities."
-  },
-  {
-    "alcohol": 7,
-    "name": "Chimay Rouge",
-    "description": "This Trappist beer possesses a beautiful coppery colour that makes it particularly attractive. Topped with a creamy head, it gives off a slight fruity apricot smell from the fermentation. The aroma felt in the mouth is a balance confirming the fruit nuances revealed to the sense of smell. This traditional Belgian beer is best savoured at cellar temperature "
-  }
-];
-
-$scope.orderProp = 'alcohol';
-```
-
-This is a good time to talk about two-way data-binding. Notice that when the app is loaded in the browser, "Alcohol content" is selected in the drop down menu. This is because we set `orderProp` to `alcohol` in the controller. So the binding works in the direction from our model to the UI. Now if you select "Alphabetically" in the drop down menu, the model will be updated as well and the beers will be reordered. That is the data-binding doing its job in the opposite direction — from the UI to the model.
-
 ## Experiments ##
 
+Replace the `ng-src` directive with a plain old `src` attribute. Using tools such as Firebug, or Chrome's Web Inspector, or inspecting the webserver access logs, confirm that the app is indeed making an extraneous request to `/app/%7B%7Bbeer.img%7D%7D` (or `/app/{{beer.img}}`).
 
-In the `BeerListCtrl` controller, remove the statement that sets the `orderProp` value and you'll see that Angular will temporarily add a new "unknown" option to the drop-down list and the ordering will default to unordered/natural order.
-
-Add an `{{orderProp}}` binding into the `index.html` template to display its current value as text.
-
-Reverse the sort order by adding a `-` symbol before the sorting value: 
-
-```html
-<option value="-age">Oldest</option>
-```
+The issue here is that the browser will fire a request for that invalid image address as soon as it hits the img tag, which is before Angular has a chance to evaluate the expression and inject the valid address.
 
 ## Summary ##
 
-Now that you have added list sorting, go to [step 5](../step-05) to learn about Angular services and how Angular uses dependency injection.
+Now that you have added beer images and links, go to [step 7](../step-07) to learn about Angular layout templates and how Angular makes it easy to create applications that have multiple views.
