@@ -77,7 +77,7 @@ However, when you reload the page, you won't see the expected result. This is be
 
 If you want to bind to the query model from the `<title>` element, you must move the ngController declaration to the HTML element because it is the common parent of both the body and title elements:
 
-```
+```html
 <html ng-app="AngularBeer" ng-controller="BeerListCtrl">
 ```
 
