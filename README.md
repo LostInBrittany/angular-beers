@@ -6,7 +6,7 @@ We teach web-development in an Engineering School with a rather restrictive netw
 
 So we decided to build an alternative version of the tutorial that could be done even behind a very restrictive proxy. And then we thought about the subject, what would our tutorial speak about? The official one was about Android phones, and it's great, but we wanted to make us more personal... so we chose doing it about beer.
 
-![Screenshot](../assets/screenshot-01.png)
+![Screenshot](assets/screenshot-01.png)
 
 ## What are the objectives of this tutorial ##
 
