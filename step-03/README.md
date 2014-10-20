@@ -1,6 +1,4 @@
-# AngularBeer - AngularJS tutorial #
-
-# Step 03 #
+# AngularBeer - AngularJS tutorial - Step 03 #
 
 We did a lot of work in laying a foundation for the app in the last step, so now we'll do something simple; 
 we will add full text search (yes, it will be simple!). 
@@ -58,61 +56,39 @@ This new code demonstrates the following:
 
 ### Display Current Query ###
 
-Display the current value of the query model by adding a {{query}} binding into the index.html template, and see how it changes when you type in the input box.
+Display the current value of the query model by adding a `{{query}}` binding into the `index.html` template, and see how it changes when you type in the input box.
 
-Display Query in Title
-Let's see how we can get the current value of the query model to appear in the HTML page title.
 
-Add an end-to-end test into the describe block, test/e2e/scenarios.js should look like this:
+### Display Query in Title ###
 
-describe('PhoneCat App', function() {
+Let's see how we can get the current value of the `query` model to appear in the HTML page title.
 
-  describe('Phone list view', function() {
+You might think you could just add the `{{query}}` to the title tag element as follows:
 
-    beforeEach(function() {
-      browser.get('app/index.html');
-    });
-
-    var phoneList = element.all(by.repeater('phone in phones'));
-    var query = element(by.model('query'));
-
-    it('should filter the phone list as a user types into the search box', function() {
-      expect(phoneList.count()).toBe(3);
-
-      query.sendKeys('nexus');
-      expect(phoneList.count()).toBe(1);
-
-      query.clear();
-      query.sendKeys('motorola');
-      expect(phoneList.count()).toBe(2);
-    });
-
-    it('should display the current filter value in the title bar', function() {
-      query.clear();
-      expect(browser.getTitle()).toMatch(/Google Phone Gallery:\s*$/);
-
-      query.sendKeys('nexus');
-      expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);
-    });
-  });
-});
-Run protractor (npm run protractor) to see this test fail.
-
-You might think you could just add the {{query}} to the title tag element as follows:
-
+```html
 <title>Google Phone Gallery: {{query}}</title>
-However, when you reload the page, you won't see the expected result. This is because the "query" model lives in the scope, defined by the ng-controller="PhoneListCtrl" directive, on the body element:
+```
 
-<body ng-controller="PhoneListCtrl">
-If you want to bind to the query model from the <title> element, you must move the ngController declaration to the HTML element because it is the common parent of both the body and title elements:
+However, when you reload the page, you won't see the expected result. This is because the "query" model lives in the scope, defined by the `ng-controller="BeerListCtrl"` directive, on the body element:
 
-<html ng-app="phonecatApp" ng-controller="PhoneListCtrl">
-Be sure to remove the ng-controller declaration from the body element.
+```html
+<body ng-controller="BeerListCtrl">
+```
 
-Re-run npm run protractor to see the test now pass.
+If you want to bind to the query model from the `<title>` element, you must move the ngController declaration to the HTML element because it is the common parent of both the body and title elements:
 
-While using double curlies works fine within the title element, you might have noticed that for a split second they are actually displayed to the user while the page is loading. A better solution would be to use the ngBind or ngBindTemplate directives, which are invisible to the user while the page is loading:
+```
+<html ng-app="AngularBeer" ng-controller="BeerListCtrl">
+```
 
-<title ng-bind-template="Google Phone Gallery: {{query}}">Google Phone Gallery</title>
-Summary
-We have now added full text search and included a test to verify that search works! Now let's go on to step 4 to learn how to add sorting capability to the phone app.
+Be sure to remove the `ng-controller` declaration from the `body` element.
+
+While using double curlies works fine within the `title` element, you might have noticed that for a split second they are actually displayed to the user while the page is loading. A better solution would be to use the [ngBind](https://docs.angularjs.org/api/ng/directive/ngBind) or [ngBindTemplate directives](https://docs.angularjs.org/api/ng/directive/ngBindTemplate), which are invisible to the user while the page is loading:
+
+```html
+<title ng-bind-template="Angular Beer Gallery: {{query}}">Angular Beer Gallery</title>
+```
+
+## Summary ##
+
+We have now added full text search! Now let's go on to step 4 to learn how to add sorting capability to the beer app.

@@ -1,6 +1,4 @@
-# AngularBeer - AngularJS tutorial #
-
-# Step 01 #
+# AngularBeer - AngularJS tutorial - Step 01 #
 
 This is the initial step of the tutorial. In this step you won't need to code, everything is already coded for you.
 

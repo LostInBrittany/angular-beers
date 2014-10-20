@@ -1,6 +1,4 @@
-# AngularBeer - AngularJS tutorial #
-
-# Step 02 #
+# AngularBeer - AngularJS tutorial - Step 02 #
 
 In this step we are going to make the web page dynamic — with AngularJS.
 
