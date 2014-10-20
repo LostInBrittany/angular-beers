@@ -43,3 +43,5 @@ As the computer used for the course haven't Git, we have structurated the projec
 1. [Templating Links & Images](./step-06/)
 1. [Routing & Multiple Views](./step-07/)
 1. [More Templating](./step-08/)
+
+In each step directory you have a README file that explain the objective of the step, that you will do in the working directory `app`. If you have problems or if you get lost, you also have the solution of each step in the step directories. 
