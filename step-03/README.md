@@ -9,7 +9,7 @@ We want to add a search box to the app, and we want the results on the beer list
 
 We don't need to do any changes to the controller.
 
-## Templates ##
+## Template ##
 
 We use [Twitter Bootstrap](http://getbootstrap.com) column model to divide the page in two columns, the left one for the search box, the right one for the beer list.
 
