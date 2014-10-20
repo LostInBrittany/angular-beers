@@ -14,8 +14,9 @@ In Angular, the **view** is a projection of the model through the HTML **templat
 
 The view component is constructed by Angular from this template:
 
-`app/index.html`
+`app/index.html`:
 
+```html
     <!doctype html>
     <html lang="en" ng-app="AngularBeer">
     <head>
@@ -35,7 +36,7 @@ The view component is constructed by Angular from this template:
       </ul>
     </body>
     </html>
-
+```
 
 In the template we replaced the hard-coded beer list with the [ngRepeat directive](https://docs.angularjs.org/api/ng/directive/ngRepeat) 
 and two [Angular expressions](https://docs.angularjs.org/guide/expression):   
@@ -53,5 +54,34 @@ The [Angular expressions](https://docs.angularjs.org/guide/expression) in curly 
 Note: We have specified an Angular Module to load using `ng-app="AngularBeer"`, where `AngularBeer` is the name of our module. This module will contain the `BeerListCtrl`.   
 
 
-### Model and controller ##
+### Model and Controller ##
 
+The data model (a simple array of beers in object literal notation) is now instantiated within the `BeerListCtrl` controller. The controller is simply a constructor function that takes a $scope parameter:
+
+`app/js/controllers.js`:
+
+```javascript
+    angular
+      .module('AngularBeer', [])
+      .controller('BeerListCtrl', ['$scope', function($scope) {
+        $scope.beers = [
+          {
+            "alcohol": 8.5,
+            "name": "Affligem Tripel",
+            "description": "The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma, delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle."
+          },
+          {
+            "alcohol": 9.2,
+            "name": "Rochefort 8",
+            "description": "A dry but rich flavoured beer with complex fruity and spicy flavours."
+          },
+          {
+            "alcohol": 7,
+            "name": "Chimay Rouge",
+            "description": "This Trappist beer possesses a beautiful coppery colour that makes it particularly attractive. Topped with a creamy head, it gives off a slight fruity apricot smell from the fermentation. The aroma felt in the mouth is a balance confirming the fruit nuances revealed to the sense of smell. This traditional Belgian beer is best savoured at cellar temperature "
+          }
+        ];
+      }]);
+```
+
+      
