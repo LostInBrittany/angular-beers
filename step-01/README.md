@@ -1,6 +1,6 @@
 # AngularBeer - AngularJS tutorial #
 
-## Step 01 ##
+# Step 01 #
 
 This is the initial step of the tutorial. In this step you won't need to code, everything is already coded for you.
 
@@ -10,7 +10,7 @@ In order to illustrate how Angular enhances standard HTML, you will create a pur
 
 In this step you will add some basic information about two beers to an HTML page.
 
-### The structure of the app ###
+## The structure of the app ##
 
 As you can see, the `app` directory have several sub-directories:
 
@@ -22,7 +22,7 @@ As you can see, the `app` directory have several sub-directories:
   files here.
 * `partials`: here you will store the views, the HTML templates used for the application.
 
-### What must I do? ###
+## What must I do? ##
 
 Add the beer information to the `app/index.html` file:
 
@@ -44,7 +44,7 @@ Add the beer information to the `app/index.html` file:
       </li>
     </ul>
 
-### Additional experiments ###
+## Additional experiments ##
 
 Try adding more static HTML to `app/index.html`. For example:
 

@@ -1,6 +1,6 @@
 # AngularBeer - AngularJS tutorial #
 
-## Step 02 ##
+# Step 02 #
 
 In this step we are going to make the web page dynamic — with AngularJS.
 
@@ -8,7 +8,7 @@ There are many ways to structure the code for an application. For Angular apps, 
 
 The objective of this step is to dynamically generate a list of three beers from a block of JSON data.
 
-### Views and templates ###
+## Views and templates ##
 
 In Angular, the **view** is a projection of the model through the HTML **template**. This means that whenever the model changes, Angular refreshes the appropriate binding points, which updates the view.
 
@@ -54,7 +54,7 @@ The [Angular expressions](https://docs.angularjs.org/guide/expression) in curly 
 Note: We have specified an Angular Module to load using `ng-app="AngularBeer"`, where `AngularBeer` is the name of our module. This module will contain the `BeerListCtrl`.   
 
 
-### Model and Controller ##
+## Model and Controller #
 
 The data model (a simple array of beers in object literal notation) is now instantiated within the `BeerListCtrl` controller. The controller is simply a constructor function that takes a $scope parameter:
 
@@ -93,14 +93,14 @@ Although the controller is not yet doing very much, it plays a crucial role. By 
 * The `BeerListCtrl` controller attaches the beer data to the `$scope` that was injected into our controller function. This *scope* is a prototypical descendant of the root scope that was created when the application was defined. This controller *scope* is available to all bindings located within the `<body ng-controller="BeerListCtrl">` tag.
 
 
-### Scope ###
+## Scope ##
 
 The concept of a scope in Angular is crucial. A scope can be seen as the glue which allows the template, model and controller to work together. Angular uses scopes, along with the information contained in the template, data model, and controller, to keep models and views separate, but in sync. Any changes made to the model are reflected in the view; any changes that occur in the view are reflected in the model.
 
 To learn more about Angular scopes, see the [angular scope documentation](https://docs.angularjs.org/api/ng/type/$rootScope.Scope).
 
 
-### Experiments ###
+## Experiments ##
 
 Add another binding to `index.html`. For example:
 
@@ -143,7 +143,7 @@ Now, make the list 1-based by incrementing i by one in the binding:
 Extra points: try and make an 8x8 table using an additional `ng-repeat`.
 to instead use toBe(4).
 
-### Summary ###
+## Summary ##
 
 You now have a dynamic app that features separate model, view, and controller components. 
 Now, let's go to step 3 to learn how to add full text search to the app.
