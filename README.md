@@ -30,3 +30,16 @@ You can go through the whole tutorial in a couple of hours or you may want to sp
 Besides a web browser and a text-editor (we suggest the excellent [Sublime Text](http://www.sublimetext.com/)), you will only need a web-server to test your code.
 
 If you have [NodeJS](http://nodejs.org) in your system, we have put a minimalist JavaScript web-server on `./scripts/web-server.js`. To see the app running in a browser, open a separate terminal/command line tab or window, go to the project directory and then run `node ./scripts/web-server.js` to start the web server. Now, open a browser window for the app and navigate to http://localhost:8000/app/index.html to see the current state of the app.
+
+## How is the tutorial organized ##
+
+As the computer used for the course haven't Git, we have structurated the project to allow a Git-less use. The `app` directory is the main directory of the project, the working version of the code. The tutorial is divided in steps, each one in its own directory:
+
+1 [Static Template](./step-01/)
+1 [Angular Templates](./step-02/)
+1 [Filtering Repeaters](./step-03/)
+1 [Two-way Data Binding](./step-04/)
+1 [XHRs & Dependency Injection](./step-05/)
+1 [Templating Links & Images](./step-06/)
+1 [Routing & Multiple Views](./step-07/)
+1 [More Templating](./step-08/)
