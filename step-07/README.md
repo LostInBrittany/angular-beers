@@ -77,3 +77,41 @@ We must two new `<script>` tags in our index file to load up extra JavaScript fi
 ```
 
 Note that we removed most of the code in the `index.html` template and replaced it with a single line containing a `div` with the `ng-view` attribute. The code that we removed was placed into the `app/partials/beer-list.html` template:
+
+`app/partials/beer-list.html`:
+
+```html
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <!--Sidebar content-->
+        Search: <input ng-model="query">
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="alcohol">Alcohol content</option>
+        </select>
+      </div>
+      <div class="col-md-10">
+        <!--Body content-->
+        <ul class="beers">
+          <li ng-repeat="beer in beers | filter:query | orderBy:orderProp" class="thumbnail">
+            <a href="#/beers/{{beer.id}}" class="thumb"><img ng-src="{{beer.img}}"></a>
+            <a href="#/beers/{{beer.id}}">{{beer.name}}</a>
+            <p>{{beer.description}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+```
+
+We also added a placeholder template for the beer details view:
+
+`app/partials/beer-detail.html`:
+
+```html
+TBD: detail view for <span>{{beerId}}</span>
+```
+
+Note how we are using the beerId expression which will be defined in the BeerDetailCtrl controller.
