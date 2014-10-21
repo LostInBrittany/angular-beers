@@ -46,9 +46,11 @@ angular.module('BeerAnimations', ['ngAnimate']);
 // this module will later be used to define animations
 // ...
 And now let's attach this module to our application module...
+```
 
-app/js/app.js.
+`app/js/app.js`:
 
+```javascript
 // ...
 var angularBeer = angular.module('AngularBeer', [
   'ngRoute',
@@ -63,30 +65,34 @@ var angularBeer = angular.module('AngularBeer', [
 Now, the AngularBeer module is animation aware. Let's make some animations!
 
 
+## Animating ngRepeat with CSS Transition Animations ##
 
-Animating ngRepeat with CSS Transition Animations
-We'll start off by adding CSS transition animations to our ngRepeat directive present on the beer-list.html page. First let's add an extra CSS class to our repeated element so that we can hook into it with our CSS animation code.
+We'll start off by adding CSS transition animations to our `ngRepeat` directive present on the `beer-list.html` page. First let's add an extra CSS class to our repeated element so that we can hook into it with our CSS animation code.
 
-app/partials/beer-list.html.
+`app/partials/beer-list.html`:
 
+```html
 <!--
 Let's change the repeater HTML to include a new CSS class
 which we will later use for animations:
 -->
 <ul class="beers">
-<li ng-repeat="beer in beers | filter:query | orderBy:orderProp"
-    class="thumbnail beer-listing">
-  <a href="#/beers/{{beer.id}}" class="thumb"><img ng-src="{{beer.imageUrl}}"></a>
-  <a href="#/beers/{{beer.id}}">{{beer.name}}</a>
-  <p>{{beer.snippet}}</p>
-</li>
+  <li ng-repeat="beer in beers | filter:query | orderBy:orderProp" class="thumbnail beer-listing">
+    <a href="#/beers/{{beer.id}}" class="thumb"><img ng-src="{{beer.img}}"></a>
+    <a href="#/beers/{{beer.id}}">{{beer.name}}</a>
+    <p>{{beer.description}}</p>
+  </li>
 </ul>
-Notice how we added the beer-listing CSS class? This is all we need in our HTML code to get animations working.
+```
+
+Notice how we added the `beer-listing CSS` class? This is all we need in our HTML code to get animations working.
 
 Now for the actual CSS transition animation code:
 
-app/css/animations.css
+`app/css/animations.css`:
 
+
+```css
 .beer-listing.ng-enter,
 .beer-listing.ng-leave,
 .beer-listing.ng-move {
@@ -120,41 +126,51 @@ app/css/animations.css
   padding-top: 0;
   padding-bottom: 0;
 }
-As you can see our beer-listing CSS class is combined together with the animation hooks that occur when items are inserted into and removed from the list:
+```
 
-The ng-enter class is applied to the element when a new beer is added to the list and rendered on the page.
-The ng-move class is applied when items are moved around in the list.
-The ng-leave class is applied when they're removed from the list.
-The beer listing items are added and removed depending on the data passed to the ng-repeat attribute. For example, if the filter data changes the items will be animated in and out of the repeat list.
+As you can see our `beer-listing` CSS class is combined together with the animation hooks that occur when items are inserted into and removed from the list:
+
+* The `ng-enter` class is applied to the element when a new beer is added to the list and rendered on the page.
+* The `ng-move` class is applied when items are moved around in the list.
+* The `ng-leave` class is applied when they're removed from the list.
+
+The beer listing items are added and removed depending on the data passed to the `ng-repeat` attribute. For example, if the filter data changes the items will be animated in and out of the repeat list.
 
 Something important to note is that when an animation occurs, two sets of CSS classes are added to the element:
 
-a "starting" class that represents the style at the beginning of the animation
-an "active" class that represents the style at the end of the animation
-The name of the starting class is the name of event that is fired (like enter, move or leave) prefixed with ng-. So an enter event will result in a class called ng-enter.
+* a "starting" class that represents the style at the beginning of the animation
+* an "active" class that represents the style at the end of the animation
 
-The active class name is the same as the starting class's but with an -active suffix. This two-class CSS naming convention allows the developer to craft an animation, beginning to end.
+The name of the starting class is the name of event that is fired (like enter, move or leave) prefixed with `ng-`. So an enter event will result in a class called `ng-enter`.
+
+The active class name is the same as the starting class's but with an `-active` suffix. This two-class CSS naming convention allows the developer to craft an animation, beginning to end.
 
 In our example above, elements expand from a height of 0 to 120 pixels when items are added or moved, around and collapsing the items before removing them from the list. There's also a nice fade-in and fade-out effect that also occurs at the same time. All of this is handled by the CSS transition declarations at the top of the example code above.
 
 Although most modern browsers have good support for CSS transitions and CSS animations, IE9 and earlier do not. If you want animations that are backwards-compatible with older browsers, consider using JavaScript-based animations, which are described in detail below.
 
-Animating ngView with CSS Keyframe Animations
-Next let's add an animation for transitions between route changes in ngView.
 
-To start, let's add a new CSS class to our HTML like we did in the example above. This time, instead of the ng-repeat element, let's add it to the element containing the ng-view directive. In order to do this, we'll have to make some small changes to the HTML code so that we can have more control over our animations between view changes.
+## Animating ngView with CSS Keyframe Animations ##
 
-app/index.html.
+Next let's add an animation for transitions between route changes in `ngView`.
 
+To start, let's add a new CSS class to our HTML like we did in the example above. This time, instead of the `ng-repeat` element, let's add it to the element containing the `ng-view` directive. In order to do this, we'll have to make some small changes to the HTML code so that we can have more control over our animations between view changes.
+
+`app/index.html`:
+
+```html
 <div class="view-container">
-<div ng-view class="view-frame"></div>
+  <div ng-view class="view-frame"></div>
 </div>
-With this change, the ng-view directive is nested inside a parent element with a view-container CSS class. This class adds a position: relative style so that the positioning of the ng-view is relative to this parent as it animates transitions.
+```
 
-With this in place, let's add the CSS for this transition animation to our animations.css file:
+With this change, the `ng-view` directive is nested inside a parent element with a `view-container` CSS class. This class adds a `position: relative` style so that the positioning of the `ng-view` is relative to this parent as it animates transitions.
 
-app/css/animations.css.
+With this in place, let's add the CSS for this transition animation to our `animations.css` file:
 
+`app/css/animations.css`:
+
+```css
 .view-container {
 position: relative;
 }
@@ -210,7 +226,9 @@ to { opacity: 0; }
 }
 
 /* don't forget about the vendor-prefixes! */
-Nothing crazy here! Just a simple fade in and fade out effect between pages. The only out of the ordinary thing here is that we're using absolute positioning to position the next page (identified via ng-enter) on top of the previous page (the one that has the ng-leave class) while performing a cross fade animation in between. So as the previous page is just about to be removed, it fades out while the new page fades in right on top of it.
+```
+
+Nothing crazy here! Just a simple fade in and fade out effect between pages. The only out of the ordinary thing here is that we're using absolute positioning to position the next page (identified via `ng-enter`) on top of the previous page (the one that has the `ng-leave` class) while performing a cross fade animation in between. So as the previous page is just about to be removed, it fades out while the new page fades in right on top of it.
 
 Once the leave animation is over then element is removed and once the enter animation is complete then the ng-enter and ng-enter-active CSS classes are removed from the element, causing it to rerender and reposition itself with its default CSS code (so no more absolute positioning once the animation is over). This works fluidly so that pages flow naturally between route changes without anything jumping around.
 
@@ -218,7 +236,9 @@ The CSS classes applied (the start and end classes) are much the same as with ng
 
 For more on CSS animations, see the Web Platform documentation.
 
-Animating ngClass with JavaScript
+
+## Animating ngClass with JavaScript ##
+
 Let's add another animation to our application. Switching to our beer-detail.html page, we see that we have a nice thumbnail swapper. By clicking on the thumbnails listed on the page, the profile beer image changes. But how can we change this around to add animations?
 
 Let's think about it first. Basically, when you click on a thumbnail image, you're changing the state of the profile image to reflect the newly selected thumbnail image. The best way to specify state changes within HTML is to use classes. Much like before, how we used a CSS class to specify an animation, this time the animation will occur whenever the CSS class itself changes.
