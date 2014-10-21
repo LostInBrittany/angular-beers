@@ -1,0 +1,55 @@
+
+<div class="beer-images">
+  <img ng-src="{{beer.img}}"
+       class="beer"
+       ng-class="{active:mainImg==beer.img}">
+  <img ng-src="{{beer.label}}"
+       class="beer"
+       ng-class="{active:mainImg==beer.label}">
+</div>
+
+<h1>{{beer.name}}</h1>
+
+<p>{{beer.description}}</p>
+
+<ul class="beer-thumbs">
+  <li>
+    <img ng-src="{{beer.img}}" ng-click="setImage(beer.img)">
+  </li>
+  <li>
+    <img ng-src="{{beer.label}}" ng-click="setImage(beer.label)"> 
+  </li>
+</ul>
+
+<ul class="specs">
+  <li>
+    <dl>
+      <dt>Alcohol content</dt>
+      <dd>{{beer.alcohol | strongAlcohol }}</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt>Brewery</dt>
+      <dd>{{beer.brewery}}</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt>Availability</dt>
+      <dd>{{beer.availability}}</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt>Style</dt>
+      <dd>{{beer.style}}</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt>Serving instructions</dt>
+      <dd>{{beer.serving}}</dd>
+    </dl>
+  </li>
+</ul>
