@@ -6,7 +6,8 @@ var angularBeer = angular.module('AngularBeer', [
   'ngRoute',
   'BeerControllers',
   'BeerFilters',
-  'BeerServices'
+  'BeerServices',
+  'BeerAnimations'
 ]);
 
 angularBeer.config(['$routeProvider',

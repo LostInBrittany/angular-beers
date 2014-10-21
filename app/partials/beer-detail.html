@@ -1,4 +1,12 @@
-<img ng-src="{{mainImg}}" class="beer">
+
+<div class="beer-images">
+  <img ng-src="{{beer.img}}"
+       class="beer"
+       ng-class="{active:mainImg==beer.img}">
+  <img ng-src="{{beer.label}}"
+       class="beer"
+       ng-class="{active:mainImg==beer.label}">
+</div>
 
 <h1>{{beer.name}}</h1>
 
