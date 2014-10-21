@@ -44,6 +44,7 @@ We'll expand the BeerDetailCtrl by using the `$http` service to fetch the JSON f
   }])
 ```
 
+
 ## Template ## 
 
 The TBD placeholder line has been replaced with lists and bindings that comprise the beer details. 
