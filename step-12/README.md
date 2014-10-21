@@ -147,7 +147,7 @@ The active class name is the same as the starting class's but with an `-active` 
 
 In our example above, elements expand from a height of 0 to 120 pixels when items are added or moved, around and collapsing the items before removing them from the list. There's also a nice fade-in and fade-out effect that also occurs at the same time. All of this is handled by the CSS transition declarations at the top of the example code above.
 
-Although most modern browsers have good support for CSS transitions and CSS animations, IE9 and earlier do not. If you want animations that are backwards-compatible with older browsers, consider using JavaScript-based animations, which are described in detail below.
+Although most modern browsers have good support for [CSS transitions](http://caniuse.com/#feat=css-transitions) and [CSS animations](http://caniuse.com/#feat=css-animation), IE9 and earlier do not. If you want animations that are backwards-compatible with older browsers, consider using JavaScript-based animations, which are described in detail below.
 
 
 ## Animating ngView with CSS Keyframe Animations ##
@@ -234,27 +234,30 @@ Once the leave animation is over then element is removed and once the enter anim
 
 The CSS classes applied (the start and end classes) are much the same as with ng-repeat. Each time a new page is loaded the ng-view directive will create a copy of itself, download the template and append the contents. This ensures that all views are contained within a single HTML element which allows for easy animation control.
 
-For more on CSS animations, see the Web Platform documentation.
+For more on CSS animations, see the [Web Platform documentation](http://docs.webplatform.org/wiki/css/properties/animations).
 
 
 ## Animating ngClass with JavaScript ##
 
-Let's add another animation to our application. Switching to our beer-detail.html page, we see that we have a nice thumbnail swapper. By clicking on the thumbnails listed on the page, the profile beer image changes. But how can we change this around to add animations?
+Let's add another animation to our application. Switching to our `beer-detail.html` page, we see that we have a nice thumbnail swapper. By clicking on the thumbnails listed on the page, the profile beer image changes. But how can we change this around to add animations?
 
 Let's think about it first. Basically, when you click on a thumbnail image, you're changing the state of the profile image to reflect the newly selected thumbnail image. The best way to specify state changes within HTML is to use classes. Much like before, how we used a CSS class to specify an animation, this time the animation will occur whenever the CSS class itself changes.
 
-Whenever a new beer thumbnail is selected, the state changes and the .active CSS class is added to the matching profile image and the animation plays.
+Whenever a new beer thumbnail is selected, the state changes and the `.active` CSS class is added to the matching profile image and the animation plays.
 
-Let's get started and tweak our HTML code on the beer-detail.html page first:
+Let's get started and tweak our HTML code on the `beer-detail.html` page first:
 
-app/partials/beer-detail.html.
+`app/partials/beer-detail.html`:
 
+```html
 <!-- We're only changing the top of the file -->
 <div class="beer-images">
-  <img ng-src="{{img}}"
+  <img ng-src="{{beer.img}}"
        class="beer"
-       ng-repeat="img in beer.images"
-       ng-class="{active:mainImageUrl==img}">
+       ng-class="{active:mainImg==beer.img}">
+  <img ng-src="{{beer.label}}"
+       class="beer"
+       ng-class="{active:mainImg==beer.label}">
 </div>
 
 <h1>{{beer.name}}</h1>
@@ -262,18 +265,24 @@ app/partials/beer-detail.html.
 <p>{{beer.description}}</p>
 
 <ul class="beer-thumbs">
-  <li ng-repeat="img in beer.images">
-    <img ng-src="{{img}}" ng-mouseenter="setImage(img)">
+  <li>
+    <img ng-src="{{beer.img}}" ng-click="setImage(beer.img)">
+  </li>
+  <li>
+    <img ng-src="{{beer.label}}" ng-click="setImage(beer.label)"> 
   </li>
 </ul>
-Just like with the thumbnails, we're using a repeater to display all the profile images as a list, however we're not animating any repeat-related animations. Instead, we're keeping our eye on the ng-class directive since whenever the active class is true then it will be applied to the element and will render as visible. Otherwise, the profile image is hidden. In our case, there is always one element that has the active class, and, therefore, there will always be one beer profile image visible on screen at all times.
+```
 
-When the active class is added to the element, the active-add and the active-add-active classes are added just before to signal AngularJS to fire off an animation. When removed, the active-remove and the active-remove-active classes are applied to the element which in turn trigger another animation.
+Just like with the thumbnails, we're using a repeater to display all the profile images as a list, however we're not animating any repeat-related animations. Instead, we're keeping our eye on the `ng-class` directive since whenever the active class is true then it will be applied to the element and will render as visible. Otherwise, the profile image is hidden. In our case, there is always one element that has the active class, and, therefore, there will always be one beer profile image visible on screen at all times.
+
+When the `active` class is added to the element, the `active-add` and the `active-add-active` classes are added just before to signal AngularJS to fire off an animation. When removed, the `active-remove` and the `active-remove-active` classes are applied to the element which in turn trigger another animation.
 
 To ensure that the beer images are displayed correctly when the page is first loaded we also tweak the detail page CSS styles:
 
-app/css/app.css
+`app/css/app.css`:
 
+```css
 .beer-images {
 background-color: white;
 width: 450px;
@@ -299,71 +308,75 @@ display: none;
 img.beer:first-child {
 display: block;
 }
-You may be thinking that we're just going to create another CSS-enabled animation. Although we could do that, let's take the opportunity to learn how to create JavaScript-enabled animations with the animation() module method.
+```
 
-app/js/animations.js.
+You may be thinking that we're just going to create another CSS-enabled animation. Although we could do that, let's take the opportunity to learn how to create JavaScript-enabled animations with the `animation()` module method.
 
-var Angular BeerAnimations = angular.module('Angular BeerAnimations', ['ngAnimate']);
+`app/js/animations.js`:
 
-Angular BeerAnimations.animation('.beer', function() {
+```javascript
+angular.module('BeerAnimations', ['ngAnimate'])
+  .animation('.beer', function() {
 
-  var animateUp = function(element, className, done) {
-    if(className != 'active') {
-      return;
-    }
-    element.css({
-      position: 'absolute',
-      top: 500,
-      left: 0,
-      display: 'block'
-    });
-
-    jQuery(element).animate({
-      top: 0
-    }, done);
-
-    return function(cancel) {
-      if(cancel) {
-        element.stop();
+    var animateUp = function(element, className, done) {
+      if(className != 'active') {
+        return;
       }
-    };
-  }
+      element.css({
+        position: 'absolute',
+        top: 500,
+        left: 0,
+        display: 'block'
+      });
 
-  var animateDown = function(element, className, done) {
-    if(className != 'active') {
-      return;
+      jQuery(element).animate({
+        top: 0
+      }, done);
+
+      return function(cancel) {
+        if(cancel) {
+          element.stop();
+        }
+      };
     }
-    element.css({
-      position: 'absolute',
-      left: 0,
-      top: 0
-    });
 
-    jQuery(element).animate({
-      top: -500
-    }, done);
-
-    return function(cancel) {
-      if(cancel) {
-        element.stop();
+    var animateDown = function(element, className, done) {
+      if(className != 'active') {
+        return;
       }
+      element.css({
+        position: 'absolute',
+        left: 0,
+        top: 0
+      });
+
+      jQuery(element).animate({
+        top: -500
+      }, done);
+
+      return function(cancel) {
+        if(cancel) {
+          element.stop();
+        }
+      };
+    }
+
+    return {
+      addClass: animateUp,
+      removeClass: animateDown
     };
-  }
+  });
+``` 
 
-  return {
-    addClass: animateUp,
-    removeClass: animateDown
-  };
-});
-Note that we're using jQuery to implement the animation. jQuery isn't required to do JavaScript animations with AngularJS, but we're going to use it because writing your own JavaScript animation library is beyond the scope of this tutorial. For more on jQuery.animate, see the jQuery documentation.
+Note that we're using [jQuery](http://jquery.com/) to implement the animation. jQuery isn't required to do JavaScript animations with AngularJS, but we're going to use it because writing your own JavaScript animation library is beyond the scope of this tutorial. For more on `jQuery.animate`, see the [jQuery documentation](http://api.jquery.com/animate/).
 
-The addClass and removeClass callback functions are called whenever a class is added or removed on the element that contains the class we registered, which is in this case .beer. When the .active class is added to the element (via the ng-class directive) the addClass JavaScript callback will be fired with element passed in as a parameter to that callback. The last parameter passed in is the done callback function. The purpose of done is so you can let Angular know when the JavaScript animation has ended by calling it.
+The `addClass` and `removeClass` callback functions are called whenever a class is added or removed on the element that contains the class we registered, which is in this case `.beer`. When the `.active` class is added to the element (via the `ng-class` directive) the `addClass` JavaScript callback will be fired with element passed in as a parameter to that callback. The last parameter passed in is the done callback function. The purpose of done is so you can let Angular know when the JavaScript animation has ended by calling it.
 
-The removeClass callback works the same way, but instead gets triggered when a class is removed from the element.
+The `removeClass` callback works the same way, but instead gets triggered when a class is removed from the element.
 
-Within your JavaScript callback, you create the animation by manipulating the DOM. In the code above, that's what the element.css() and the element.animate() are doing. The callback positions the next element with an offset of 500 pixels and animates both the previous and the new items together by shifting each item up 500 pixels. This results in a conveyor-belt like animation. After the animate function does its business, it calls done.
+Within your JavaScript callback, you create the animation by manipulating the DOM. In the code above, that's what the `element.css()` and the `element.animate()` are doing. The callback positions the next element with an offset of 500 pixels and animates both the previous and the new items together by shifting each item up 500 pixels. This results in a conveyor-belt like animation. After the animate function does its business, it calls done.
 
-Notice that addClass and removeClass each return a function. This is an optional function that's called when the animation is cancelled (when another animation takes place on the same element) as well as when the animation has completed. A boolean parameter is passed into the function which lets the developer know if the animation was cancelled or not. This function can be used to do any cleanup necessary for when the animation finishes.
+Notice that `addClass` and `removeClass` each return a function. This is an optional function that's called when the animation is cancelled (when another animation takes place on the same element) as well as when the animation has completed. A boolean parameter is passed into the function which lets the developer know if the animation was cancelled or not. This function can be used to do any cleanup necessary for when the animation finishes.
 
 ##Summary ##
 
