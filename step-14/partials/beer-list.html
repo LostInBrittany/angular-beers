@@ -1,0 +1,24 @@
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query">
+
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="alcohol">Alcohol content</option>
+        </select>
+
+      </div>
+      <div class="col-md-10">
+        <!--Body content-->
+        <ul class="beers">
+          <li ng-repeat="beer in beers | filter:query | orderBy:orderProp" class="thumbnail">
+            <beer beer='beer'></beer>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

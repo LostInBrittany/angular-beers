@@ -56,4 +56,4 @@ and pass a `beer` argument by reference:
 
 ## Summary ##
 
-Nw we have our first custom element, a Beer directive. We are ready for [step 14](../step-14) where we will create a directive encapsulating behaviour, in this case a `$http` asynchronous call.
+Now we have our first custom element, a Beer directive. We are ready for [step 14](../step-14) where we will create a directive encapsulating behaviour, in this case a `$http` asynchronous call.
