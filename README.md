@@ -51,5 +51,6 @@ As the computer used for the course haven't Git, we have structurated the projec
 1. [Event Handlers](./step-10)
 1. [REST and Custom Services](./step-11)
 1. [Applying Animations](./step-12)
+1. [Custom Elements](./step-13)
 
 In each step directory you have a README file that explain the objective of the step, that you will do in the working directory `app`. If you have problems or if you get lost, you also have the solution of each step in the step directories. 
