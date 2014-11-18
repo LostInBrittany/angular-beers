@@ -51,4 +51,32 @@ In the view `beerDetail` we directly call the `beerDetail` directive passing to 
   <beer-detail beer="beer" main-img="mainImg"></beer-detail>
 ```
 
+## Adding intelligence ##
+
+Now we put the `BeerService` call inside the directive and we simplify the `BeerDetailCtrl`:
+
+
+```javascript
+  ...
+  .controller('BeerDetailCtrl', ['$scope', '$routeParams', 'Beer', function($scope, $routeParams, Beer) {
+    $scope.beerId = $routeParams.beerId;
+  }]);
+
+```
+
+Then we need to put the intelligence into the directive's `link` function:
+
+```javascript
+  ...
+  link: function(scope, element, attributes, controller) {
+    scope.beer = Beer.get({beerId: scope.beerId}, function(beer) {
+      scope.mainImg = beer.img;
+    });
+
+    scope.setImage = function(img) {
+      scope.mainImg = img;
+    }
+  }
+```
+
 ## Summary #
