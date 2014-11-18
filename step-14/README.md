@@ -79,4 +79,6 @@ Then we need to put the intelligence into the directive's `link` function:
   }
 ```
 
-## Summary #
+## Summary ##
+
+Now you have written a more complex directive, so it's time to pass to the next step: mobile...
