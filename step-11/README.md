@@ -1,6 +1,6 @@
 # AngularBeer - AngularJS tutorial - Step 11 #
 
-IIn this step, you will change the way our app fetches data.
+In this step, you will change the way our app fetches data.
 
 We define a custom service that represents a [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) client. Using this client we can make requests to the server for data in an easier way, without having to deal with the lower-level $http API, HTTP methods and URLs.
 
@@ -109,4 +109,4 @@ Sometimes, relying on the future object and data-binding alone is not sufficient
 
 ## Summary ##
 
-Now that we've seen how to build a custom service as a RESTful client, we're ready for [step 12](../step-12) (the last step!) to learn how to improve this application with animations.
+Now that we've seen how to build a custom service as a RESTful client, we're ready for [step 12](../step-12) to learn how to improve this application with animations.
