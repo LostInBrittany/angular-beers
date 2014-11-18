@@ -1,4 +1,4 @@
-# AngularBeer - AngularJS tutorial - Step 13 #
+# AngularBeer - AngularJS tutorial - Step 14 #
 
 In this step, you are going to add a more complex custom element, a ```<beer-detail>``` tag for the details of each beer.
 
