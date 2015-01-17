@@ -139,7 +139,6 @@ Now, make the list 1-based by incrementing i by one in the binding:
 ```
 
 Extra points: try and make an 8x8 table using an additional `ng-repeat`.
-to instead use toBe(4).
 
 ## Summary ##
 
