@@ -103,7 +103,7 @@ This is the method we have choses for this tutorial.
 
 At the bottom of `index.html`, add a `<pre>{{beers | json}}</pre>` binding to see the list of beers displayed in json format.
 
-In the PhoneListCtrl controller, pre-process the http response by limiting the number of beers to the first 5 in the list. 
+In the BeerListCtrl controller, pre-process the http response by limiting the number of beers to the first 5 in the list. 
 Use the following code in the `$http` callback:
 
 ```javascript
