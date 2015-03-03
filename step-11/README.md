@@ -14,7 +14,7 @@ core Angular framework. The `angular-resource.js` file is already in the `app/li
 
 Our custom resource service will be defined in `app/js/services.js` so we need to include this file in our layout template. Additionally, we also need to load the `angular-resource.js` file, which contains the [ngResource](https://docs.angularjs.org/api/ngResource) module:
 
-`app/partials/index.html`:
+`app/index.html`:
 
 ```html
   ...
