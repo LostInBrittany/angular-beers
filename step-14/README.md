@@ -48,7 +48,7 @@ We put the beer detail template into `/templates` and we reference it from `/js/
 In the view `beerDetail` we directly call the `beerDetail` directive passing to it the beer and the current image:
 
 ```javascript
-  <beer-detail beer="beer" main-img="mainImg"></beer-detail>
+  <beer-detail beer-id="{{beerId}}"></beer-detail>
 ```
 
 ## Adding intelligence ##
