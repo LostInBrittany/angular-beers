@@ -81,4 +81,4 @@ Then we need to put the intelligence into the directive's `link` function:
 
 ## Summary ##
 
-Now you have written a more complex directive, so it's time to pass to the next step: mobile...
+Now you have written a more complex directive, so it would be time to pass to the next step: mobile... But as this tutorial is still a work in progress, I suggest you to go to the [closing notes](../the_end.md) where we'll cover where to go from here.
