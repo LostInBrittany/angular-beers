@@ -382,4 +382,4 @@ Notice that `addClass` and `removeClass` each return a function. This is an opti
 
 ##Summary ##
 
-There you have it! We have created a web app in a relatively short amount of time. In the [closing notes](../the_end.md) we'll cover where to go from here.
+There you have it! We have created a web app in a relatively short amount of time. You can now go to the  [step 13](../step-13) and create your first AngularJS directive.
