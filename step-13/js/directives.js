@@ -6,6 +6,7 @@ angular
   .module('BeerDirectives', [])
   .directive('beer', [function(){
     return {
+      restrict: 'E',  // How can this directive be uses: E = as Element, A = as Attribute, C = as Class, M = as Comment. Defaults A
       scope: {
         beer: '=beer'
       },
