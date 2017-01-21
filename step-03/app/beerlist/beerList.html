@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!--Sidebar content-->
+            Search: <input [(ngModel)]="query">
+        </div>
+        <div class="col-md-8">
+            <!--Body content-->
+            <ul>
+                <li *ngFor="let beer of (beers | filter:query)">
+                    <span>{{beer.name}}</span>
+                    <p>{{beer.description}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

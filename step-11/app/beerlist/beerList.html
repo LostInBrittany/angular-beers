@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <nav class="navbar navbar-dark bg-inverse">
+                <div class="form-group">
+                    <label for="search">Search :</label>
+                    <input [(ngModel)]="query" type="text" class="form-control" id="search">
+                </div>
+                <div class="form-group">
+                    <label for="sort">Sort by :</label>
+                    <select [(ngModel)]="orderProp" class="form-control custom-select" id="sort">
+                        <option value="name">Alphabetical</option>
+                        <option value="alcohol">Alcohol content</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card" *ngFor="let beer of (beers | filter:query | orderby:orderProp)">
+                <beer-exerp [beer]="beer"></beer-exerp>
+            </div>
+        </div>
+    </div>
+</div>

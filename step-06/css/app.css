@@ -1,0 +1,9 @@
+/* app css stylesheet */
+
+div.main {
+    padding-top: 20px;
+}
+
+.thumb img {
+   margin: 10px;
+}

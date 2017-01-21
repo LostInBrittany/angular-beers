@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <nav class="navbar navbar-dark bg-inverse">
+                <div class="form-group">
+                    <label for="search">Search :</label>
+                    <input [(ngModel)]="query" type="text" class="form-control" id="search">
+                </div>
+                <div class="form-group">
+                    <label for="sort">Sort by :</label>
+                    <select [(ngModel)]="orderProp" class="form-control custom-select" id="sort">
+                        <option value="name">Alphabetical</option>
+                        <option value="alcohol">Alcohol content</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card" *ngFor="let beer of (beers | filter:query | orderby:orderProp)">
+                <div class="row">
+                    <a href="#/beers/{{beer.id}}" class="col-sm-4 thumb">
+                        <img class="img-thumbnail" [src]="beer.img" alt="Beer image"/>
+                    </a>
+                    <div class="col-sm-8 card-block">
+                        <a href="#/beers/{{beer.id}}"><h4 class="card-title">{{beer.name}} <span
+                                class="tag tag-default">{{beer.alcohol}} °</span>
+                        </h4></a>
+                        <p class="card-text text-justify">{{beer.description}}</p>
+                        <a href="#/beers/{{beer.id}}" class="btn btn-primary">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

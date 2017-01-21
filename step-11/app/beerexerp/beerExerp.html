@@ -1,0 +1,12 @@
+<div class="row">
+    <a href="#/beers/{{beer.id}}" class="col-sm-4 thumb">
+        <img class="img-thumbnail" [src]="beer.img" alt="Beer image"/>
+    </a>
+    <div class="col-sm-8 card-block">
+        <a href="#/beers/{{beer.id}}"><h4 class="card-title">{{beer.name}} <span
+                class="tag tag-default">{{beer.alcohol}} °</span>
+        </h4></a>
+        <p class="card-text text-justify">{{beer.description}}</p>
+        <a href="#/beers/{{beer.id}}" class="btn btn-primary">Detail</a>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"><img [src]="mainImg" class="beer"></div>
+        <div class="col-md-8">
+            <h1>{{beer.name}}</h1>
+            <p class="text-justify">{{beer.description}}</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <img [src]="beer.img" class="img-thumbnail thumb" (click)="setImage(beer.img)">
+                </li>
+                <li class="list-inline-item">
+                    <img [src]="beer.label" class="img-thumbnail thumb" (click)="setImage(beer.label)">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><dl><dt>Alcohol content</dt><dd>{{beer.alcohol}}</dd></dl></li>
+        <li class="list-group-item"><dl><dt>Brewery</dt><dd>{{beer.brewery}}</dd></dl></li>
+        <li class="list-group-item"><dl><dt>Availability</dt><dd>{{beer.availability}}</dd></dl></li>
+        <li class="list-group-item"><dl><dt>Style</dt><dd>{{beer.style}}</dd></dl></li>
+        <li class="list-group-item"><dl><dt>Serving instructions</dt><dd>{{beer.serving}}</dd></dl></li>
+    </ul>
+</div>
