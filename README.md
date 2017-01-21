@@ -1,12 +1,15 @@
-# Angular2+ Beers - Angular tutorial #
+# Angular Beers - Angular tutorial #
 
-Some years ago we build a tutorial for Angular JS, [AngularBeers](https://github.com/LostInBrittany/angular-beers), as an alternative to the excellent [official AngularJS tutorial](https://docs.angularjs.org/tutorial/). It's time now to actualize the tutorial to Angular 2, or simply [Angular](https://angular.io/).
+> This is a tutorial for [Angular](https://angular.io/). If you want to see the original one, for [AngularJS](https://angularjs.org/) 1.x,   
+> please go to the [`angularjs-1.x` branch](https://github.com/LostInBrittany/angular-beers/tree/angularjs-1.x)
+
+Some years ago we build a tutorial for Angular JS, [AngularBeers](https://github.com/LostInBrittany/angular-beers/tree/angularjs-1.x), as an alternative to the excellent [official AngularJS tutorial](https://docs.angularjs.org/tutorial/). It's time now to actualize the tutorial to Angular 2, or simply [Angular](https://angular.io/).
 
 We teach web-development in an Engineering School with a rather restrictive network. In order to explain Angular to our students, we needed a tutorial that could be played without network access.
 
 So we decided to build a tutorial that could be done even behind a very restrictive proxy. And then we thought about the subject, we decided to keep the same subject that the first one: beers!
 
-![Screenshot](assets/screenshot-01.png)
+![Screenshot](assets/screenshot-01.jpg)
 
 ## What are the objectives of this tutorial ##
 
@@ -27,7 +30,7 @@ The tutorial guides you through the entire process of building a simple applicat
 
 You can go through the whole tutorial in a couple of hours or you may want to spend a pleasant day really digging into it. If you're looking for a shorter introduction to Angular, check out the [Quickstart](https://angular.io/docs/ts/latest/quickstart.html).
 
-![Screenshot](assets/screenshot-02.png)
+![Screenshot](assets/screenshot-02.jpg)
 
 ## What do I need to use this tutorial ##
 
