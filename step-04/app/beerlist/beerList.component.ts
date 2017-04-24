@@ -4,7 +4,7 @@ import {OrderByPipe} from '../pipes/orderby-pipe';
 
 @Component({
     selector: 'beer-list',
-    templateUrl: './app/beerlist/beerList.html',
+    templateUrl: './beerList.html',
     pipes: [FilterArrayPipe, OrderByPipe]
 })
 

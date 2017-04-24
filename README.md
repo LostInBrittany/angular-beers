@@ -2,6 +2,7 @@
 
 > This is a tutorial for [Angular](https://angular.io/). If you want to see the original one, for [AngularJS](https://angularjs.org/) 1.x,   
 > please go to the [`angularjs-1.x` branch](https://github.com/LostInBrittany/angular-beers/tree/angularjs-1.x)
+> The original AngularJS tutorial by [Horacio](https://github.com/LostInBrittany) was updated to Angular 2 by [Xavier](https://github.com/Giwi/) at [angular2-beers](https://github.com/Giwi/angular2-beer)
 
 Some years ago we build a tutorial for Angular JS, [AngularBeers](https://github.com/LostInBrittany/angular-beers/tree/angularjs-1.x), as an alternative to the excellent [official AngularJS tutorial](https://docs.angularjs.org/tutorial/). It's time now to actualize the tutorial to Angular 2, or simply [Angular](https://angular.io/).
 

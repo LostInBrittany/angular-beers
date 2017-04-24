@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 @Component({
     selector: 'beer-exerp',
-    templateUrl: './app/beerexerp/beerExerp.html'
+    templateUrl: './beerExerp.html'
 })
 export class BeerExerp implements OnInit {
     @Input()

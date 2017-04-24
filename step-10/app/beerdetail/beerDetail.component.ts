@@ -6,7 +6,7 @@ import {BeerService}            from '../beers.service';
 
 @Component({
     selector: 'beer-detail',
-    templateUrl: './app/beerdetail/beerDetail.html',
+    templateUrl: './beerDetail.html',
     providers: [BeerService]
 })
 export class BeerDetail implements OnInit {

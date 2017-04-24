@@ -5,7 +5,7 @@ import { BeerService } from '../beers.service';
 
 @Component({
     selector: 'beer-list',
-    templateUrl: './app/beerlist/beerList.html',
+    templateUrl: './beerList.html',
     pipes: [FilterArrayPipe, OrderByPipe],
     providers: [BeerService]
 })

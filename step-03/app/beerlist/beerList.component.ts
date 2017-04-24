@@ -3,7 +3,7 @@ import {FilterArrayPipe} from '../pipes/filter-array-pipe';
 
 @Component({
     selector: 'beer-list',
-    templateUrl: './app/beerlist/beerList.html',
+    templateUrl: './beerList.html',
     pipes: [FilterArrayPipe]
 })
 

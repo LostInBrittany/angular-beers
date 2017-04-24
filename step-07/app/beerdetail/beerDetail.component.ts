@@ -5,7 +5,7 @@ import {Location}               from '@angular/common';
 
 @Component({
     selector: 'beer-detail',
-    templateUrl: './app/beerdetail/beerDetail.html'
+    templateUrl: './beerDetail.html'
 })
 export class BeerDetail implements OnInit {
     beer = {};
