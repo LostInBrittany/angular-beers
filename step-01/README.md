@@ -1,4 +1,4 @@
-# AngularBeer - AngularJS tutorial - Step 01
+# AngularBeer - Angular tutorial - Step 01
 
 In this step you're going to edit your first Angular component, the one created for you by Angular CLI, and add some static HTML as a first version of our beer catalog...
 
