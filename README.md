@@ -2,9 +2,9 @@
 
 > This is a tutorial for [Angular](https://angular.io/). If you want to see the original one, for [AngularJS](https://angularjs.org/) 1.x,   
 > please go to the [`angularjs-1.x` branch](https://github.com/LostInBrittany/angular-beers/tree/angularjs-1.x)
-> The original AngularJS tutorial by [Horacio](https://github.com/LostInBrittany) was updated to Angular 2 by [Xavier](https://github.com/Giwi/) at [angular2-beers](https://github.com/Giwi/angular2-beer)
+> The original AngularJS tutorial by [Horacio](https://github.com/LostInBrittany) was updated to Angular 2 by [Xavier](https://github.com/Giwi/) at [angular2-beers](https://github.com/Giwi/angular2-beer) and the re-updated
 
-Some years ago we build a tutorial for Angular JS, [AngularBeers](https://github.com/LostInBrittany/angular-beers/tree/angularjs-1.x), as an alternative to the excellent [official AngularJS tutorial](https://docs.angularjs.org/tutorial/). It's time now to actualize the tutorial to Angular 2, or simply [Angular](https://angular.io/).
+Some years ago we build a tutorial for Angular JS, [AngularBeers](https://github.com/LostInBrittany/angular-beers/tree/angularjs-1.x), as an alternative to the excellent [official AngularJS tutorial](https://docs.angularjs.org/tutorial/). It's time now to actualize the tutorial to Angular 2+, or simply [Angular](https://angular.io/).
 
 We teach web-development in an Engineering School with a rather restrictive network. In order to explain Angular to our students, we needed a tutorial that could be played without network access.
 
@@ -27,7 +27,7 @@ When you finish the tutorial you will be able to:
 + Move application logic out of the template and into Controllers.
 + Get data from a server using Angular services.
 
-The tutorial guides you through the entire process of building a simple application, including writing and running unit and end-to-end tests. Experiments at the end of each step provide suggestions for you to learn more about AngularJS and the application you are building.
+The tutorial guides you through the entire process of building a simple application, including writing and running unit and end-to-end tests. Experiments at the end of each step provide suggestions for you to learn more about Angular and the application you are building.
 
 You can go through the whole tutorial in a couple of hours or you may want to spend a pleasant day really digging into it. If you're looking for a shorter introduction to Angular, check out the [Quickstart](https://angular.io/docs/ts/latest/quickstart.html).
 
@@ -47,6 +47,7 @@ If you have [NodeJS](http://nodejs.org) in your system, we have put a minimalist
 
 As the computers used for the course haven't Git, we have structured the project to allow a Git-less use. The `app` directory is the main directory of the project, the working version of the code. The tutorial is divided in steps, each one in its own directory:
 
+1. [Install the dependencies and initialize the project](./step-00/)
 1. [Static Template](./step-01/)
 1. [Angular Templates](./step-02/)
 1. [Filtering Repeaters and Pipes](./step-03/)
