@@ -63,3 +63,7 @@ Let's replace the content of the template file, `angularbeers/src/app/app.compon
 Try adding more static HTML to `angularbeers/src/app/app.component.html`. For example:
 
     <p>Total number of beers: 2</p>
+
+## Summary
+
+You have modified your first component and added some static information. Now you can go to [step 02](../step-02) and begin to understand how Angular templates work.

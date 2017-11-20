@@ -95,6 +95,6 @@ Your app greets you with a message:
 
 ![ng serve --open](../assets/step-00_02.jpg)
 
-## Summary ##
+## Summary
 
-You now have the dependencies you need for *Angular Beers*, and you have initialized the project.  You can go now to step 01 and begin to code...
+You now have the dependencies you need for *Angular Beers*, and you have initialized the project.  You can go now to [step 01](../step-01) and begin to code...
