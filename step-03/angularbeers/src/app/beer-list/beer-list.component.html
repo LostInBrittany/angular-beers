@@ -1,0 +1,22 @@
+
+<div class="container">
+  <div class="row">
+      <div class="sidebar">
+          <!--Sidebar content-->
+          <div>
+            Search: <input [(ngModel)]="query">
+          </div>
+          <div>Current query: {{query}}</div>
+          <div>Total number of beers: {{beers.length}}</div>
+      </div>
+      <div class="main">
+          <!--Main content-->
+          <ul>
+              <li *ngFor="let beer of (beers | filterArray:query)">
+                  <span>{{beer.name}}</span>
+                  <p>{{beer.description}}</p>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>

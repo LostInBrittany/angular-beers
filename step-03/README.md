@@ -1,22 +1,26 @@
-# AngularBeer - AngularJS tutorial - Step 03 #
+# AngularBeer - Angular tutorial - Step 03 #
 
 We did a lot of work in laying a foundation for the app in the last step, so now we'll do something simple; we will add full text search (yes, it will be simple!).
 
 We want to add a search box to the app, and we want the results on the beer list change according to what the user types into the search box.
 
-In Angular 1 you got `filter` and `orderBy`, thez do dot exist in angular 2 : [No FilterPipe or OrderByPipe](https://angular.io/docs/ts/latest/guide/pipes.html#!#no-filter-pipe)
+## Using *impure* pipes to filter and order
 
-## Pipe ##
+In AngularJS the `ng-for` directives had some very useful `filter` and `orderBy` attributes that made the search box really easy to do.
+
+We can still do something similar in Angular, using [pipes](https://angular.io/docs/ts/latest/guide/pipes.html). But there is a caveat, sometimes you will need these pipes to be[*impure*](https://angular.io/guide/pipes#pure-and-impure-pipes). *Pure* pipes in Angular aren't called when a property in an object has changed, only when the object reference itself changes, making them blazing fast. But when you do a filter or a sort, you need it called at every property change, so you need to use *impure* pipes, with a bigger performance cost. You have more info on the subject [here](https://angular.io/guide/pipes#appendix-no-filterpipe-or-orderbypipe).
+
+As here we are filtering based on a text field external to the beer list, we can use a normal (*pure*) pipe.
 
 Let's create a pipe :
 
-`app/pipes/filter-array-pipe.ts`
+`angularbeers/src/app/pipes/filter-array-pipe.ts`
 
 ```typescript
 import {Pipe, PipeTransform} from '@angular/core';
 
 // # Filter Array of Objects
-@Pipe({name: 'filter'})
+@Pipe({name: 'filterArray'})
 export class FilterArrayPipe implements PipeTransform {
     transform(items, args) {
         if (!args || !args[0]) {
@@ -28,97 +32,121 @@ export class FilterArrayPipe implements PipeTransform {
 }
 ```
 
-## Controller ##
+## Register the pipe
 
-Import the pipe in `app/beerlist/beerList.component.ts`:
+As any other Angular component, you need to register `FilterArrayPipe` in the main application module.
+
+`angularbeers/src/app/app.module.ts`
 
 ```typescript
-import {Component} from '@angular/core';
-import {FilterArrayPipe} from '../pipes/filter-array-pipe';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-@Component({
-    selector: 'beer-list',
-    templateUrl: './app/beerlist/beerList.html',
-    pipes: [FilterArrayPipe]
+
+import { AppComponent } from './app.component';
+import { BeerListComponent } from './beer-list/beer-list.component';
+import { FilterArrayPipe } from './pipes/filter-array-pipe';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    BeerListComponent,
+    FilterArrayPipe
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
+export class AppModule { }
+```
 
-export class BeerList {
+## Importing `FormsModule`
 
-    beers = [
-        {
-            "alcohol": 8.5,
-            "name": "Affligem Tripel",
-            "description": "The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma, delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle."
-        },
-        {
-            "alcohol": 9.2,
-            "name": "Rochefort 8",
-            "description": "A dry but rich flavoured beer with complex fruity and spicy flavours."
-        },
-        {
-            "alcohol": 7,
-            "name": "Chimay Rouge",
-            "description": "This Trappist beer possesses a beautiful coppery colour that makes it particularly attractive. Topped with a creamy head, it gives off a slight fruity apricot smell from the fermentation. The aroma felt in the mouth is a balance confirming the fruit nuances revealed to the sense of smell. This traditional Belgian beer is best savoured at cellar temperature "
-        }
-    ];
+In Angular, in order to be able to use two-way data binding for form inputs, you need to import the `FormsModule` package in your Angular module (for more info see the [Angular official tutorial](https://angular.io/docs/ts/latest/tutorial/toh-pt1.html#!#two-way-binding) and the [official documentation for forms](https://angular.io/docs/ts/latest/guide/forms.html))
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+
+
+import { AppComponent } from './app.component';
+import { BeerListComponent } from './beer-list/beer-list.component';
+import { FilterArrayPipe } from './pipes/filter-array-pipe';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    BeerListComponent,
+    FilterArrayPipe
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+## Use the pipe in `BeerList` 
+
+
+We use some [flex-box CSS](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) to divide the `BeerList` component in two more or less responsive columns the left one for the search box, the right one for the beer  list:
+
+
+`angularbeers/src/app/beer-list/beer-list-component.css`
+
+```css
+.component {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.sidebar {
+  width: 200px;
+}
+
+.main {
+  max-width: 100%;
 }
 ```
 
-
-## Template ##
-
-We use [Twitter Bootstrap](http://getbootstrap.com) column model to divide the page in two columns, the left one for the search box, the right one for the beer  list.
-
-We need to add a standard HTML `<input>` tag and an Angular's [pipe](https://angular.io/docs/ts/latest/guide/pipes.html) to process the input for the [NgFor directive](https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html) directive.
+And then we modify the component template tp add a standard HTML `<input>` tag and our custom [pipe](https://angular.io/docs/ts/latest/guide/pipes.html) to process the input for the [NgFor directive](https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html) directive.
 
 This lets a user enter search criteria and immediately see the effects of their search on the beer list.
 
-In order to use a model on our input, we need to do some imports :
 
-`app/app.module.ts` :
-
-```typescript
-import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
-import {BeerList} from "./beerlist/beerList.component";
-import {FilterArrayPipe} from "./pipes/filter-array-pipe";
-
-@NgModule({
-    imports: [
-        BrowserModule,
-        FormsModule
-    ],
-    declarations: [
-        BeerList,
-        FilterArrayPipe
-    ],
-    bootstrap: [BeerList]
-})
-export class AppModule {
-}
-```
-
-
-`app/beerlist/beerList.html`:
+`angularbeers/src/app/beer-list/beer-list.component.html`:
 
 ```html
 <div class="container">
- <div class="row">
-     <div class="col-md-4">
-         <!--Sidebar content-->
-         Search: <input [(ngModel)]="query">
-     </div>
-     <div class="col-md-8">
-         <!--Body content-->
-         <ul>
-             <li *ngFor="let beer of (beers | filter:query)">
-                 <span>{{beer.name}}</span>
-                 <p>{{beer.description}}</p>
-             </li>
-         </ul>
-     </div>
- </div>
+  <div class="row">
+      <div class="sidebar">
+          <!--Sidebar content-->
+          Search: <input [(ngModel)]="query">
+      </div>
+      <div class="main">
+          <!--Main content-->
+          <ul>
+              <li *ngFor="let beer of (beers | filterArray:query)">
+                  <span>{{beer.name}}</span>
+                  <p>{{beer.description}}</p>
+              </li>
+          </ul>
+      </div>
+  </div>
 </div>
 ```
 
@@ -132,11 +160,15 @@ This new code demonstrates the following:
 
 * The `FilterArrayPipe` pipe uses the `query` value to create a new array that contains only those records that match the `query`. `*ngFor` automatically updates the view in response to the changing number of phones returned by the `filter` filter. The process is completely transparent to the developer.
 
-## Experiments ##
 
-### Display Current Query ###
+## Experiments
 
-Display the current value of the query model by adding a `{{query}}` binding into the `app/beerlist/beerList.html` template, and see how it changes when you type in the input box.
+### Display Current Query
+
+Display the current value of the query model by adding a `{{query}}` binding into the `angularbeers/src/app/beer-list/beer-list.component.html` template, and see how it changes when you type in the input box.
+
+
+![Display Current Query](../assets/step-00_01.jpg)
 
 ## Summary ##
 
