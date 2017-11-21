@@ -10,6 +10,7 @@ import { Beer } from '../beer';
 })
 export class BeerListComponent implements OnInit {
 
+  errorMessage : string;
 
   orderProp : string = 'alcohol';
 
@@ -46,6 +47,15 @@ export class BeerListComponent implements OnInit {
 
   getBeers(): void {
     this.beersService.getBeers()
-      .subscribe(beers => this.beers = beers);
+      .subscribe(beers => {
+
+        this.beers = beers;
+        if (beers.length == 0) {
+          this.errorMessage = "Empty list of beers";
+        } else {
+          this.errorMessage = "";
+        }
+
+      } );
   }
 }

@@ -281,6 +281,27 @@ Because each service method returns a different kind of `Observable` result, `er
 
 - At the bottom of `angularbeers/src/app/beer-list/beer-list.component.html`, add a `<pre>{{beers | json}}</pre>` binding to see the list of beers displayed in json format.
 
+- At the top of `angularbeers/src/app/beer-list/beer-list.component.html`, add a
+
+```html
+<div class="alert" *ngIf="errorMessage">
+  <strong>Oh snap!</strong> {{errorMessage}}.
+</div>
+```
+
+to display an error message, you can test if by modifying the `beerUrl` in `angularbeers/src/app/services/beers.service.ts`.
+
+In the BeerList component, pre-process the http response by limiting the number of beers to the first 5 in the list.
+Use the following code in the `getBeers` callback:
+
+```typescript
+getBeers() {
+    this.beerService.getBeers()
+        .subscribe(
+            beers => { this.beers = beers.splice(0, 5); }
+        )
+}
+```
 
 ## Summary
 

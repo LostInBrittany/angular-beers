@@ -11,7 +11,7 @@ import { Beer } from '../beer';
 @Injectable()
 export class BeersService {
   // URL to web API
-  private beerUrl = 'beers/besers.json';
+  private beerUrl = 'beers/beers.json';
 
   constructor(
     private http: HttpClient) {
@@ -22,7 +22,7 @@ export class BeersService {
   getBeers (): Observable<Beer[]> {
     return this.http.get<Beer[]>(this.beerUrl)
     .pipe(
-      catchError(this.handleError('getBeers', []));
+      catchError(this.handleError('getBeers', [])));
   }
 
 
