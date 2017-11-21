@@ -1,0 +1,23 @@
+.component {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.sidebar {
+  width: 200px;
+}
+
+.main {
+  width: 70%;
+}
+
+.alert {
+  border-radius: 10px;
+  background-color: #ff6666;
+  color: white;
+}
