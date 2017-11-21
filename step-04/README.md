@@ -108,7 +108,6 @@ Then we add a line to the controller that sets the default value of `orderProp` 
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
-import {FilterArrayPipe} from '../pipes/filter-array-pipe';
 
 @Component({
   selector: 'beer-list',
